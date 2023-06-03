@@ -1,0 +1,14 @@
+.container {
+   display: flex;
+   flex-direction:row;
+   justify-content: space-between;
+   width:fit-content;
+   margin-top: 5%;
+   margin-bottom: 5%;
+   padding:auto;
+   padding-bottom: 3%;
+   margin-left: 2%;
+   margin-right: 10%;
+   background-color: #7678ed;
+    border-radius: 15px;
+}
