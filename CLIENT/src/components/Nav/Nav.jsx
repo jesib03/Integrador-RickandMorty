@@ -1,11 +1,25 @@
+import React from "react";
 import SearchBar from "../SearchBar/SearchBar.jsx";
 import style from "./nav.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 function Nav(props) {
-  const { onSearch } = props;
+  const { onSearch, loggedIn, logout } = props;
+  
+  // const { pathname } = useLocation();
+  // if (pathname === "/") {
+  // return null;
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  }
+  
   return (
-    <div className={style.container}>
+    <nav className={style.container}>
       <SearchBar onSearch={onSearch} />
       <Link to="/about">
         <button>About</button>
@@ -14,7 +28,12 @@ function Nav(props) {
       <Link to="/home">
         <button>Home</button>
       </Link>
-    </div>
+      {loggedIn ? (
+          <li>
+            <button onClick={handleLogout}>Log out</button>
+          </li>
+        ) : null}
+    </nav>
   );
 }
 
