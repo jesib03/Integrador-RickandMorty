@@ -12,14 +12,13 @@ const Detail = () => {
     useEffect(() => {
         axios(`http://localhost:3001/rickandmorty/character/${id}`)
         .then(({ data }) => {
-           if (data.name) {
-              setCharacter(data);
-           } else {
-            window.alert("Character not found");
-           }
+        if (data.name) {
+        setCharacter(data);
+        } else {
+        window.alert("Character not found");
+        }
         });
-        return setCharacter({});
-     }, [id]);
+    }, [id]);
 
     return (
         <div>

@@ -1,21 +1,32 @@
-const axios = require('axios');
+const axios = require("axios");
+// require("dotenv").config();
 
-const getCharById = (res, id) => {
-    axios(`https://rickandmortyapi.com/api/character/${id}`)
-    .then((response) => response.data)
-    .then(({ name, gender, species, origin, image, status }) => {
-        const character = { name, gender, species, origin, image, status }
-        return res.
-            writeHead(200, { 'Content-Type': 'application/json' })
-            .end(JSON.stringify(character));
-    })
-    .catch(err => {
-        return res
-            .writeHead(500, { 'Content-Type': 'text/plain' })
-            .end(err.message);  
-    });
-}
+// const { URL } = process.env;
+// console.log(URL)
+const URL = 'https://rickandmortyapi.com/api/character/';
+const getCharById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { data } = await axios(`${URL}/${id}`);
+    const { status, name, species, origin, gender, image } = data;
 
-module.exports = {
-    getCharById
-}
+      if(name) {
+        const character = {
+          id,  
+          name,
+          status,
+          species,
+          origin,
+          gender, 
+          image,
+        }
+        return res.status(200).json(character)
+      }
+      return res.status(404).send("Not found")
+    } catch (err) {
+     res.status(500).json({error: err.message})
+    }
+      
+};
+
+module.exports = { getCharById };

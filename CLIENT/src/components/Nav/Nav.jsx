@@ -33,6 +33,10 @@ function Nav(props) {
             <button onClick={handleLogout}>Log out</button>
           </li>
         ) : null}
+        <br />
+        <Link to="/favorites">
+        <button>FAVORITES</button>
+      </Link>
     </nav>
   );
 }

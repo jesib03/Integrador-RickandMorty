@@ -1,4 +1,5 @@
 .container{
+  display: flexbox;
   width: 100%;
   height: 75px;
   background: #17141d;
