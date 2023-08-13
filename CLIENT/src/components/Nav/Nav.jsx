@@ -24,19 +24,17 @@ function Nav(props) {
       <Link to="/about">
         <button>About</button>
       </Link>
-      <br />
       <Link to="/home">
         <button>Home</button>
+        <Link to="/favorites">
+        <button>FAVORITES</button>
+      </Link>
       </Link>
       {loggedIn ? (
           <li>
             <button onClick={handleLogout}>Log out</button>
           </li>
-        ) : null}
-        <br />
-        <Link to="/favorites">
-        <button>FAVORITES</button>
-      </Link>
+        ) : null}    
     </nav>
   );
 }

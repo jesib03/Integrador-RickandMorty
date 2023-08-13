@@ -19,24 +19,25 @@ useEffect((id) => {
 }, [myFavorites]);
 
 const handleFavorite = () => {
-   if (isFav === true) {
-      setIsFav(false);
-      removeFav(id);
-   } else if (isFav === false) {
-      setIsFav(true);
-      addFav(name, status, species, gender, origin, image, onClose, id)
-   }
-}
+		isFav ? removeFav(id) : addFav({ id, name, image, gender })
+		setIsFav(!isFav)
+	}
+	const handleClose = () => {
+		removeFav(id)
+		onClose(id)
+	}
 
    return (
       <div className={style.divCard}>
+         <div>
          {
             isFav ? (
-            <button onClick={handleFavorite}>*</button>
+            <button onClick={handleFavorite}>♥️</button>
             ) : (
-            <button onClick={handleFavorite}>🤍</button>
+            <button onClick={handleClose}>💘</button>
             )
          }
+         </div>
          <button onClick={() => onClose(id)}>X</button>
          <img src={image} alt='' />
          <Link to={`/detail/${id}`} >
